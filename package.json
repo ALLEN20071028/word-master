@@ -1,0 +1,36 @@
+{
+  "name": "word-master",
+  "version": "1.0.0",
+  "description": "单词斩 · 四六级词汇：零依赖、本地优先的艾宾浩斯背单词网页",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "validate": "node validate.js",
+    "check": "node --check server.js && node validate.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ALLEN20071028/word-master.git"
+  },
+  "homepage": "https://github.com/ALLEN20071028/word-master#readme",
+  "bugs": {
+    "url": "https://github.com/ALLEN20071028/word-master/issues"
+  },
+  "keywords": [
+    "cet4",
+    "cet6",
+    "vocabulary",
+    "spaced-repetition",
+    "ebbinghaus",
+    "flashcard",
+    "vanilla-js",
+    "localStorage"
+  ]
+}
