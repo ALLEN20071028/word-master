@@ -2,7 +2,7 @@
 
 面向仓库维护者。以下命令在 **Git Bash**（Windows）或任意 POSIX shell 中执行；仓库根目录是 `word-master/`。
 
-> 本地 `git init`、首次提交与 `remote add` 已代跑完成；远程仓库尚未创建、尚未 push。已实测：WorkBuddy 的 GitHub 连接器身份认证有效（`get_me` 返回 `ALLEN20071028`），但创建仓库接口返回 `403 Resource not accessible by integration`——集成令牌无权创建个人仓库，这不是认证或邮箱问题。因此仍需一次账号级认证：个人访问令牌，或网页建仓后浏览器授权。GitHub 界面入口与认证细节可能更新，以官方文档为准（见文末）。
+> 本地 `git init`、首次提交与 `remote add` 已代跑完成；远程仓库尚未创建、尚未 push。已实测：WorkBuddy 的 GitHub 连接器身份认证有效（`get_me` 返回 `ALLEN20071028`），但创建仓库接口返回 `403 Resource not accessible by integration`。GitHub 官方文档说明 `POST /user/repos` 支持 GitHub App installation tokens，但需 `Administration`(write) 或 `Repository creation`(write) 权限；因此更可能是该连接器未被授予此权限（**推断，待核**），并非「集成令牌不能建个人仓库」。绕过办法：个人访问令牌，或网页建仓后浏览器授权。GitHub 界面入口与认证细节可能更新，以官方文档为准（见文末）。
 
 ---
 
@@ -51,7 +51,7 @@ git status          # 尚未 init 时会报错，可跳过
 | **A. GitHub CLI（最省事）** | 安装 GitHub CLI → `gh auth login` → 选 GitHub.com / HTTPS / 浏览器登录 |
 | **B. HTTPS + 个人访问令牌** | GitHub → Settings → Developer settings → Personal access tokens → 生成令牌（命令行推送需 `repo` 权限）→ `git push` 提示密码时粘贴令牌，不要填账号密码；可装 Git Credential Manager 缓存 |
 | **C. SSH** | 生成 SSH 密钥对、把公钥加到 GitHub 账号 → remote 用 `git@github.com:ALLEN20071028/word-master.git` |
-| ✗ GitHub 连接器 | 已实测不够用：认证有效，但创建仓库被拒 `403 Resource not accessible by integration`（集成令牌不能建个人仓库）。仍需下面的账号级认证 |
+| ✗ GitHub 连接器 | 已实测不够用：认证有效，但创建仓库被拒 `403 Resource not accessible by integration`（缺 `Repository creation` 权限，待核）。仍需下面的账号级认证 |
 
 > 令牌等同密码，别写进仓库、别贴到聊天里。**待核**：令牌创建入口、可选项与权限名称随 GitHub 界面调整，以官方文档为准。
 
